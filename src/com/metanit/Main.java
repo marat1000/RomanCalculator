@@ -6,6 +6,8 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Введите выражение вида 5+4, числа должны быть целыми от 1 до 10 включительно: \n");
         Scanner sc = new Scanner(System.in);
+        int MIN = 1;
+        int MAX = 10;
         int a = 0;
         int b = 0;
         String oper = "";
@@ -22,13 +24,13 @@ public class Main {
             if (strings.length != 2) {
                 throw new Exception();
             }
-            if ( a<11 && a>0 && b<11 && b>0 ) {
+            if ( a>=MIN && a<=MAX && b>=MIN && b<=MAX ) {
                 System.out.println("Результат = " + operation(a, b, oper));
             }
             else  {
                 a = RomanArabicConverter.romanToArabic(strings[0]);
                 b = RomanArabicConverter.romanToArabic(strings[1]);
-                if ( a<11 && a>0 && b<11 && b>0 ) {
+                if ( a>=MIN && a<=MAX && b>=MIN && b<=MAX ) {
                     System.out.println("Результат = " + RomanArabicConverter.arabicToRoman(operation(a, b, oper)));
                 }
                 else{
@@ -40,16 +42,16 @@ public class Main {
         }
     }
 
-    private static int operation(int a, int b, String operator) throws Exception {
+    private static int operation(int firstNumber, int secondNumber, String operator) throws Exception {
         switch (operator) {
             case "*":
-                return a * b;
+                return firstNumber * secondNumber;
             case "+":
-                return a + b;
+                return firstNumber + secondNumber;
             case "-":
-                return a - b;
+                return firstNumber - secondNumber;
             case "/":
-                return a / b;
+                return firstNumber / secondNumber;
             default:
                 throw new Exception();
         }
